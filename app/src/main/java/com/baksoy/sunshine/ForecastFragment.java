@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -23,11 +25,11 @@ public class ForecastFragment extends Fragment {
     public ForecastFragment() {
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
 
         String[] forecastArray = {"Sun, Jun 1 - Clear - 31/17", "Mon, Jun 2 - Clear - 21/14",
                 "Tue, Jun 3 - Cloudy - 22/17", "Wed, Jun 4 - Rainy - 18/11", "Fri, Jun 6 - Rainy - 27/15"};
@@ -40,9 +42,15 @@ public class ForecastFragment extends Fragment {
         //Setting our AdapterView to display the array within our adapter
         listView.setAdapter(adapter);
 
-
+        setHasOptionsMenu(true);
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.forecastfragment, menu);
     }
 
     public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
@@ -112,4 +120,5 @@ public class ForecastFragment extends Fragment {
             return null;
         }
     }
+
 }
