@@ -84,7 +84,7 @@ public class MainActivityFragment extends Fragment {
                     // buffer for debugging.
                     buffer.append(line + "\n");
                 }
-
+    
                 if (buffer.length() == 0) {
                     // Stream was empty.  No point in parsing.
                     return null;
