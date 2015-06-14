@@ -18,9 +18,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class MainActivityFragment extends Fragment {
+public class ForecastFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public ForecastFragment() {
     }
 
     @Override
@@ -84,7 +84,7 @@ public class MainActivityFragment extends Fragment {
                     // buffer for debugging.
                     buffer.append(line + "\n");
                 }
-    
+
                 if (buffer.length() == 0) {
                     // Stream was empty.  No point in parsing.
                     return null;
