@@ -74,10 +74,10 @@ public class ForecastFragment extends Fragment {
         // Create some dummy data for the ListView.  Here's a sample weekly forecast
         String[] data = {
                 "Sun, Jun 1 - Clear - 31/17",
-                 "Mon, Jun 2 - Clear - 21/14",
-                 "Tue, Jun 3 - Cloudy - 22/17",
-                 "Wed, Jun 4 - Rainy - 18/11",
-                 "Fri, Jun 6 - Rainy - 27/15"
+                "Mon, Jun 2 - Clear - 21/14",
+                "Tue, Jun 3 - Cloudy - 22/17",
+                "Wed, Jun 4 - Rainy - 18/11",
+                "Fri, Jun 6 - Rainy - 27/15"
         };
 
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
@@ -311,7 +311,6 @@ public class ForecastFragment extends Fragment {
                 for (String dayForecastStr : result) {
                     mForecastAdapter.add(dayForecastStr);
                 }
-                // New data is back from the server.  Hooray!
             }
         }
     }
