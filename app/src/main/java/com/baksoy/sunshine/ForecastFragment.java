@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +38,7 @@ import java.util.List;
 public class ForecastFragment extends Fragment {
 
     private ArrayAdapter<String> mForecastAdapter;
+    private String zipcode = "20147";
 
     public ForecastFragment() {
     }
@@ -44,7 +46,7 @@ public class ForecastFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Add this line in order for this fragment to handle menu events.
+        // Add following line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
     }
 
@@ -61,7 +63,8 @@ public class ForecastFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute("20147");
+            weatherTask.execute(zipcode);
+            Toast.makeText(getActivity(), "The weather forecast for v" + zipcode , Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -200,6 +203,7 @@ public class ForecastFragment extends Fragment {
             for (String s : resultStrs) {
                 Log.e(LOG_TAG, "Forecast entry: " + s);
             }
+
             return resultStrs;
 
         }
@@ -275,6 +279,7 @@ public class ForecastFragment extends Fragment {
                 forecastJsonStr = buffer.toString();
 
                 Log.e(LOG_TAG, "Forecast string: " + forecastJsonStr);
+
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
                 // If the code didn't successfully get the weather data, there's no point in attemping
@@ -300,6 +305,7 @@ public class ForecastFragment extends Fragment {
                 e.printStackTrace();
             }
 
+
             // This will only happen if there was an error getting or parsing the forecast.
             return null;
         }
@@ -311,7 +317,10 @@ public class ForecastFragment extends Fragment {
                 for (String dayForecastStr : result) {
                     mForecastAdapter.add(dayForecastStr);
                 }
+                // New data is back from the server.  Hooray!
             }
         }
     }
 }
+
+
