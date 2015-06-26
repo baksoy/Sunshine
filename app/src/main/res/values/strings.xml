@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Sunshine</string>
-    <string name="hello_world">Working with Intents</string>
+    <string name="forecast_detail">Working with Intents!</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh" translatable="false">Refresh</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_detail">Details</string>
+    <string name="hello_world">Hello World!</string>
 
 </resources>
