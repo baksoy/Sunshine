@@ -1,12 +1,17 @@
 package com.baksoy.sunshine;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
+    private static final String LOG_TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,27 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_map) {
+
+            showMap();
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMap() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String zipcode = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+
+        Uri geolocation = Uri.parse("geo:0,0?").buildUpon().appendQueryParameter("q", zipcode).build();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geolocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d(LOG_TAG, "Not able to get map location" + geolocation);
+        }
     }
 }
 
