@@ -67,7 +67,7 @@ public class ForecastFragment extends Fragment {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -234,7 +234,11 @@ public class ForecastFragment extends Fragment {
             String forecastJsonStr = null;
 
             String format = "json";
-            String units = "imperial";
+
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+            String measurement = prefs.getString(getString(R.string.pref_unit_key), getString(R.string.pref_unit_default));
+
+            String units = measurement;
             int numDays = 7;
 
             try {

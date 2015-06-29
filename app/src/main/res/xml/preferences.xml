@@ -11,8 +11,8 @@
     <ListPreference
         android:entries="@array/unit_of_temperature"
         android:entryValues="@array/list_units"
-        android:summary="@string/summary_unit_of_measurement"
         android:title="@string/title_unit_of_measurement"
+        android:key="@string/pref_unit_key"
         android:defaultValue="@string/pref_unit_default"/>
 
 </PreferenceScreen>

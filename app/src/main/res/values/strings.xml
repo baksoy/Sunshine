@@ -8,9 +8,8 @@
     <string name="pref_location_key">20147</string>
     <string name="pref_location_label">Zip Code</string>
     <string name="pref_location_default">20147</string>
+    <string name="pref_unit_key">metric</string>
     <string name="pref_unit_default">metric</string>
-    <string name="title_list_preference">Unit</string>
-    <string name="title_unit_of_measurement">Unit of Measurement</string>
-    <string name="summary_unit_of_measurement">Metric or Imperial </string>
+    <string name="title_unit_of_measurement">Temperature Units</string>
 
 </resources>
