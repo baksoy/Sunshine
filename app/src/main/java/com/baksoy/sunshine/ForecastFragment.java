@@ -33,8 +33,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Encapsulates fetching the forecast and displaying it as a {@link ListView} layout.
@@ -42,7 +40,6 @@ import java.util.List;
 public class ForecastFragment extends Fragment {
 
     private ArrayAdapter<String> mForecastAdapter;
-    //private String zipcode = "20147";
 
     public ForecastFragment() {
     }
@@ -52,6 +49,12 @@ public class ForecastFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // Add following line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateWeather();
     }
 
     @Override
@@ -66,34 +69,24 @@ public class ForecastFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String zipcode = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
-
-
         if (id == R.id.action_refresh) {
-            FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute(zipcode);
-            Toast.makeText(getActivity(), "The weather forecast for " + zipcode, Toast.LENGTH_SHORT).show();
+            updateWeather();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public void updateWeather() {
+        FetchWeatherTask weatherTask = new FetchWeatherTask();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String zipcode = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+        weatherTask.execute(zipcode);
+        Toast.makeText(getActivity(), "Weather forecast for " + zipcode, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // Create some dummy data for the ListView.  Here's a sample weekly forecast
-        String[] data = {
-                "Sun, Jun 1 - Clear - 31/17",
-                "Mon, Jun 2 - Clear - 21/14",
-                "Tue, Jun 3 - Cloudy - 22/17",
-                "Wed, Jun 4 - Rainy - 18/11",
-                "Fri, Jun 6 - Rainy - 27/15"
-        };
-
-        List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
 
         // Now that we have some dummy forecast data, create an ArrayAdapter.
         // The ArrayAdapter will take data from a source (like our dummy forecast) and
@@ -103,7 +96,7 @@ public class ForecastFragment extends Fragment {
                         getActivity(), // The current context (this activity)
                         R.layout.list_item_forecast, // The name of the layout ID.
                         R.id.list_item_forecast_textview, // The ID of the textview to populate.
-                        weekForecast);
+                        new ArrayList<String>());
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
