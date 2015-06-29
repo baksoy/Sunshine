@@ -9,10 +9,10 @@
 
 
     <ListPreference
-        android:entries="@array/unit_of_temperature"
-        android:entryValues="@array/list_units"
-        android:title="@string/title_unit_of_measurement"
-        android:key="@string/pref_unit_key"
-        android:defaultValue="@string/pref_unit_default"/>
+        android:defaultValue="@string/pref_units_default"
+        android:entries="@array/pref_units_options"
+        android:entryValues="@array/pref_units_values"
+        android:key="@string/pref_units_key"
+        android:title="@string/prefs_units_title" />
 
 </PreferenceScreen>
