@@ -5,6 +5,14 @@
     <string name="action_refresh" translatable="false">Refresh</string>
     <string name="title_activity_detail">Details</string>
     <string name="hello_world">You are looking at fragment detail</string>
-    <string name="title_activity_settings">Dummy text</string>
+    <string name="title_activity_settings">Preferences</string>
+    <string name="pref_location_key">20147</string>
+    <string name="pref_location_label">Zip Code</string>
+    <string name="pref_location_default">20147</string>
+    <string name="title_list_preference">Unit</string>
+    <!--<string-array name="Measurement">-->
+        <!--<item>"Celcius"</item>-->
+        <!--<item>"Fahrenheit"</item>-->
+    <!--</string-array>-->
 
 </resources>

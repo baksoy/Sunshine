@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_location_default"
+        android:inputType="text"
+        android:key="@string/pref_location_key"
+        android:singleLine="true"
+        android:summary="Enter Zip Code to get Weather Update"
+        android:title="@string/pref_location_label" />
+
+    <!--<ListPreference-->
+        <!--android:entries="@array/Measurement"-->
+        <!--android:key="list_preference" />-->
+
+</PreferenceScreen>
