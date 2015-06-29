@@ -3,6 +3,7 @@
     <string name="forecast_detail">Working with Intents!</string>
     <string name="action_settings">Settings</string>
     <string name="action_map">Map Location</string>
+    <string name="action_share">Share</string>
     <string name="title_activity_detail">Details</string>
     <string name="hello_world">You are looking at fragment detail</string>
     <string name="pref_location_key">20147</string>
