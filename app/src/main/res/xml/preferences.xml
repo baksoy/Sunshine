@@ -5,11 +5,14 @@
         android:inputType="text"
         android:key="@string/pref_location_key"
         android:singleLine="true"
-        android:summary="Enter Zip Code to get Weather Update"
         android:title="@string/pref_location_label" />
 
-    <!--<ListPreference-->
-        <!--android:entries="@array/Measurement"-->
-        <!--android:key="list_preference" />-->
+
+    <ListPreference
+        android:entries="@array/unit_of_temperature"
+        android:entryValues="@array/list_units"
+        android:summary="@string/summary_unit_of_measurement"
+        android:title="@string/title_unit_of_measurement"
+        android:defaultValue="@string/pref_unit_default"/>
 
 </PreferenceScreen>
