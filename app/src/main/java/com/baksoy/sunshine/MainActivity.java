@@ -61,5 +61,6 @@ public class MainActivity extends ActionBarActivity {
             Log.d(LOG_TAG, "Not able to get map location" + geolocation);
         }
     }
+
 }
 
