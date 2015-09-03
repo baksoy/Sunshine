@@ -117,11 +117,11 @@ public class TestDb extends AndroidTestCase {
         assertEquals(true, db.isOpen());
 
         // Create ContentValues of what you want to insert
-        ContentValues values = TestUtilities.createAshburnLocationValues();
+        ContentValues testValues = TestUtilities.createAshburnLocationValues();
 
         // Insert ContentValues into database and get a row ID back
         long locationRowId;
-        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, values);
+        locationRowId = db.insert(WeatherContract.LocationEntry.TABLE_NAME, null, testValues);
 
         //Verify we got a row back
         assertTrue("Error: Failure to insert location values", locationRowId != -1);
@@ -136,26 +136,18 @@ public class TestDb extends AndroidTestCase {
                 null);              // sort order
 
         // Move the cursor to a valid database row
-        c.moveToFirst();
+        assertTrue("Error: No records returned from location query", c.moveToFirst());
 
         // Validate data in resulting Cursor with the original ContentValues
         // (you can use the validateCurrentRecord function in TestUtilities to validate the
         // query if you like)
         String error = "Did not match the expected value ";
 
-        TestUtilities.validateCurrentRecord(error, c, testValues());
+        TestUtilities.validateCurrentRecord(error, c, testValues);
 
         // Finally, close the cursor and database
         c.close();
         db.close();
-    }
-
-    private ContentValues testValues() {
-        ContentValues values = new ContentValues();
-        values.put(WeatherContract.LocationEntry.COLUMN_CITY_NAME, "Ashburn");
-        values.put(WeatherContract.LocationEntry.COLUMN_COORD_LAT, 39.0437);
-        values.put(WeatherContract.LocationEntry.COLUMN_COORD_LONG, -77.4874);
-        return values;
     }
 
     /*
