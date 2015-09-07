@@ -67,6 +67,7 @@ public class WeatherContract {
 
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
 
@@ -109,7 +110,8 @@ public class WeatherContract {
             Student: Fill in this buildWeatherLocation function
          */
         public static Uri buildWeatherLocation(String locationSetting) {
-            return null;
+            Uri weatherLocation = CONTENT_URI.buildUpon().appendPath(locationSetting).build();
+            return weatherLocation;
         }
 
         public static Uri buildWeatherLocationWithStartDate(
